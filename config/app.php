@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\UserProvider::class,
+        App\Providers\PlaceProvider::class,
+
 
 
     ],
