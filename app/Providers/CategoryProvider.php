@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\CategoryRepository;
+use App\Repositories\Eloquent\CategoryRepositoryImpl;
 use Illuminate\Support\ServiceProvider;
 
 class CategoryProvider extends ServiceProvider
@@ -13,6 +15,7 @@ class CategoryProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(CategoryRepository::class, CategoryRepositoryImpl::class);
     }
 
     /**

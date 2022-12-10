@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ListTravelController;
 use App\Http\Controllers\Api\PlaceController;
 use Illuminate\Http\Request;
@@ -39,6 +40,14 @@ Route::controller(PlaceController::class)
 
 Route::controller(ListTravelController::class)
 ->prefix('list-travel')
+->group(function()
+{
+    Route::get('/', 'index');
+    Route::post('/', 'store');
+});
+
+Route::controller(CategoryController::class)
+->prefix('categories')
 ->group(function()
 {
     Route::get('/', 'index');
