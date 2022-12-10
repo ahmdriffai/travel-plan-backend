@@ -20,7 +20,7 @@ class PlaceController extends BaseController
     public function index(Request $request)
     {
         try {
-            $place = Place::all();
+            $place = Place::with('categories')->get();
 
             $result = [
                 'places' => $place,

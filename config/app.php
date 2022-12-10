@@ -177,6 +177,7 @@ return [
 
         App\Providers\UserProvider::class,
         App\Providers\PlaceProvider::class,
+        App\Providers\ListTravelProvider::class,
 
 
 

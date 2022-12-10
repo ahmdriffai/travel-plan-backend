@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ListTravelController;
 use App\Http\Controllers\Api\PlaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,14 @@ Route::controller(PlaceController::class)
         Route::get('/', 'index');
         Route::post('/', 'store');
     });
+
+Route::controller(ListTravelController::class)
+->prefix('list-travel')
+->group(function()
+{
+    Route::get('/', 'index');
+    Route::post('/', 'store');
+});
 
     // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

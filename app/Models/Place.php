@@ -13,4 +13,12 @@ class Place extends Model
     public function categories() {
         return $this->belongsToMany(Category::class, 'category_place');
     }
+
+    public function travelList() {
+        return $this->hasMany(ListTravel::class);
+    }
+
+    public function users() {
+        return $this->belongsToMany(User::class, 'list_travels');
+    }
 }
