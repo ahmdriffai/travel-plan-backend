@@ -21,14 +21,44 @@ class PlaceController extends BaseController
     public function index(Request $request)
     {
         try {
-            $place = Place::with('categories')->get();
+            $query = Place::query()->with('categories');
+
+            if ($category_id = $request->query('category')) {
+                $query->whereHas('categories', function($q) use ($category_id) {
+                    $q->where("category_place.id", "=", $category_id);
+                });
+            }
+
+            if ($search = $request->query('s')) {
+                $query->whereRaw("name LIKE '%" . $search . "%'")
+                    ->orWhereRaw("description LIKE '%" . $search . "%'");
+            }
+    
+            if ($sort = $request->query('sort')) {
+                $query->orderBy('price', $sort);
+            }
+
+    
+
+            $perPage = $request->query('size', 10);
+            $page = $request->query('page', 1);
+            $total = $query->count();
+    
+            $places = $query->offset(($page - 1 ) * $perPage)->limit($perPage)->get();
+            $totalPerPage = $places->count();
+            $lastPage = ceil($total / $perPage);
 
             $result = [
-                'places' => $place,
+                'total' => $total,
+                'total_perpage' => $totalPerPage,
+                'page' => $page,
+                'last_page' => $lastPage,
+                'places' => $places,
             ];
 
             return $this->responseSuccess($result, 'Success');
         } catch (Exception $e) {
+            dd($e);
             Log::error($e);
             return $this->serverError();
         }
@@ -39,7 +69,6 @@ class PlaceController extends BaseController
             $this->placeService->add($request);
             return $this->responseSuccessWhitoutData('Place Created');
         } catch (Exception $e) {
-            Log::error($e);
             return $this->serverError();
         }
     }

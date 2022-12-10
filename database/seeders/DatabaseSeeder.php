@@ -16,7 +16,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        Category::factory(5)->create();
+        $categoryName = ['penginapan', 'wisata'];
+        for ($i=0; $i < count($categoryName); $i++) { 
+            Category::factory()->create(['name' => $categoryName[$i]]);
+        }
+
+        
         Place::factory(5)->create();
     }
 }
