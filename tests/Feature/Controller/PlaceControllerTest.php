@@ -54,7 +54,6 @@ class PlaceControllerTest extends TestCase
 
         $response = $this->get('/api/places/' . $place->id);
 
-        dd($response);
         $response->assertStatus(200);
     }
 }

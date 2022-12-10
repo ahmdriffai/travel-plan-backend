@@ -28,7 +28,7 @@ class PlaceController extends BaseController
 
             if ($category = $request->query('category')) {
                 $query->whereHas('categories', function($q) use ($category) {
-                    $q->where("category_place.name", "=", $category);
+                    $q->where("categories.name", "=", $category);
                 });
             }
 
