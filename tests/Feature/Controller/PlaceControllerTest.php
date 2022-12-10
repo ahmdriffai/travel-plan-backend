@@ -3,6 +3,7 @@
 namespace Tests\Feature\Controller;
 
 use App\Models\Category;
+use App\Models\Place;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -11,7 +12,7 @@ use Tests\TestCase;
 class PlaceControllerTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     public function test_store_place()
     {
         $category1 = Category::factory()->create(['name' => 'category1']);
@@ -45,6 +46,15 @@ class PlaceControllerTest extends TestCase
     public function test_get_all_place() {
         $response = $this->get('/api/places');
 
+        $response->assertStatus(200);
+    }
+
+    public function test_find_place_by_id() {
+        $place = Place::factory()->create();
+
+        $response = $this->get('/api/places/' . $place->id);
+
+        dd($response);
         $response->assertStatus(200);
     }
 }

@@ -13,4 +13,9 @@ class PlaceRepositoryImpl implements PlaceRepository {
         $place->categories()->sync($categoryId);
         return $place;
     }
+
+    function findById($id)
+    {
+        return Place::findOrFail($id);
+    }
 }

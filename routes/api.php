@@ -36,6 +36,7 @@ Route::controller(PlaceController::class)
     {
         Route::get('/', 'index');
         Route::post('/', 'store');
+        Route::get('/{id}', 'show');
     });
 
 Route::controller(ListTravelController::class)
