@@ -1,0 +1,27 @@
+version: "3"
+services:
+    travelplan-backend:
+        image: ahmdrifai/travelplan-backend:prod
+        container_name: travelplan-backend
+        restart: unless-stopped
+        tty: true
+        env_file: .env
+        networks:
+            - travelplan-backend-prod
+
+    travelplan-backend-webserver:
+        image: ahmdrifai/travelplan-backend-webserver:prod
+        container_name: travelplan-backend-webserver
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8001:80"
+        depends_on:
+            - travelplan-backend
+        networks:
+            - travelplan-backend-prod
+
+#Docker Networks
+networks:
+    travelplan-backend-prod:
+        driver: bridge

@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ListTravelController extends BaseController
 {
@@ -33,6 +34,7 @@ class ListTravelController extends BaseController
 
             return $this->responseSuccess($result, 'success');
         } catch (Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
     }
@@ -43,6 +45,7 @@ class ListTravelController extends BaseController
             $this->listTravelService->add($request);
             return $this->responseSuccessWhitoutData("Travel Plan Added", Response::HTTP_CREATED);
         } catch (Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
     }

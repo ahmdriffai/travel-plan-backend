@@ -10,6 +10,7 @@ use App\Http\Requests\UserRegisterRequest;
 use App\Services\UserService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -35,6 +36,7 @@ class AuthController extends BaseController
         } catch(ValidationException $e) {
             return $this->responseSuccess($e->errors(), Response::HTTP_BAD_REQUEST);
         } catch(Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
     }
@@ -51,6 +53,7 @@ class AuthController extends BaseController
         } catch (UnauthorizedException $e) {
             return $this->responseError($e->getMessage(), Response::HTTP_UNAUTHORIZED);
         } catch(Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
     }
@@ -63,6 +66,7 @@ class AuthController extends BaseController
 
             return $this->responseSuccess($data, 'success');
         } catch(Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
 
@@ -73,6 +77,7 @@ class AuthController extends BaseController
             $request->user()->currentAccessToken()->delete();
             return $this->responseSuccessWhitoutData('Logout success');
         }catch(Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
     }

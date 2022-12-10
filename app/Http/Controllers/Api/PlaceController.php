@@ -8,6 +8,7 @@ use App\Models\Place;
 use App\Services\PlaceService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PlaceController extends BaseController
 {
@@ -28,6 +29,7 @@ class PlaceController extends BaseController
 
             return $this->responseSuccess($result, 'Success');
         } catch (Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
     }
@@ -37,6 +39,7 @@ class PlaceController extends BaseController
             $this->placeService->add($request);
             return $this->responseSuccessWhitoutData('Place Created');
         } catch (Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
     }

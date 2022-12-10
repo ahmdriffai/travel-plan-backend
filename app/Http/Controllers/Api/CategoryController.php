@@ -8,6 +8,7 @@ use App\Repositories\CategoryRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends BaseController
 {
@@ -27,6 +28,7 @@ class CategoryController extends BaseController
 
             return $this->responseSuccess($result, 'success');
         } catch (Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
     }
@@ -43,6 +45,7 @@ class CategoryController extends BaseController
             return $this->responseSuccessWhitoutData('Category Created', Response::HTTP_CREATED);
 
         } catch (Exception $e) {
+            Log::error($e);
             return $this->serverError();
         }
     }
