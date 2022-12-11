@@ -18,6 +18,8 @@ class PlaceFactory extends Factory
             'location' => $this->faker->address(),
             'price' => 10000,
             'description' => $this->faker->text(),
+            'lat' => $this->faker->latitude(),
+            'lng' => $this->faker->longitude(),
         ];
     }
 }
