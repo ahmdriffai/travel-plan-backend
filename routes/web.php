@@ -16,6 +16,13 @@ Route::get('/', function () {
     $places = \App\Models\Place::all();
     return view('welcome', compact('places'));
 });
+
+Route::controller(\App\Http\Controllers\HomeController::class)
+    ->group(function () {
+        Route::get('/place/{id}', 'placeDetail')->name('place-detail');
+    });
+
+
 Route::controller(\App\Http\Controllers\LoginController::class)
     ->prefix('login')
     ->group(function () {

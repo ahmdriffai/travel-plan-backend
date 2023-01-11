@@ -25,6 +25,7 @@ class PlaceServiceImpl implements PlaceService {
             'description' => $request->input('description'),
             'unit' => $request->input('unit'),
             'summary' => $request->input('summary'),
+            'link_map' => $request->input('summary'),
         ];
 
         $place = $this->placeRepository->create($detailPlace, $categoryId);

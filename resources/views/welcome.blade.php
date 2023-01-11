@@ -24,13 +24,19 @@
     <div class="row">
         @foreach($places as $place)
         <div class="col-sm-12 col-md-6 col-lg-3">
-            <a href="">
+            <a href="{{ route('place-detail', ['id' => $place->id]) }}">
                 <div class="card">
                     <div class="card-content">
-                        <img class="card-img-top img-fluid" src="{{ asset('banner1.jpg') }}" alt="Card image cap" width="100%"/>
+                        <div style="width: 100%; height: 150px; overflow: hidden">
+                            <img class="card-img-top img-fluid" src="{{ asset('banner1.jpg') }}" alt="Card image cap" height="100%"/>
+                        </div>
                         <div class="card-body">
-                            <h4 class="card-title text-capitalize">{{ $place->name }}</h4>
+                            <h4 class="card-title text-capitalize text-secondary">{{ $place->name }}</h4>
+                            <h4 class="card-title">Rp. {{ number_format($place->price) }} / <small class="fw-normal text-sm">{{ $place->unit }}</small></h4>
                             <p class="text-sm m-0 p-0 mb-1" style="font-size: 11px"><i class="bi bi-geo-alt text-danger"></i>  {{ $place->location }}</p>
+                            @foreach($place->categories as $category)
+                                <span class="badge bg-secondary text-sm" style="font-size: 10px"># {{ $category->name }}</span>
+                            @endforeach
                             <p class="card-text text-sm">
                                 Jelly-o sesame snaps cheesecake topping. Cupcake fruitcake macaroon donut pastry gummies tiramisu chocolate bar muffin. Dessert bonbon caramels brownie chocolate bar chocolate tart dragée.
                             </p>

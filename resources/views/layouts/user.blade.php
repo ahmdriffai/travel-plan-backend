@@ -61,11 +61,11 @@
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                             </ul>
                         </div>
+                        @else
+                            <a href="{{ route('form-login') }}" class="link-primary fw-semibold">Login</a><span class="mx-2">|</span>
+                            <a href="{{ route('form-register') }}" class="link-primary fw-semibold">Register</a>
                         @endif
 
-
-                        <a href="{{ route('form-login') }}" class="link-primary fw-semibold">Login</a><span class="mx-2">|</span>
-                        <a href="{{ route('form-register') }}" class="link-primary fw-semibold">Register</a>
 
                         @if(auth()->user() != null)
 

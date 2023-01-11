@@ -33,6 +33,7 @@ class PlaceAddRequest extends FormRequest
             'categories' => ['required'],
             'summary' => ['required'],
             'unit' => ['required'],
+            'link_map' => ['required'],
         ];
     }
 }
