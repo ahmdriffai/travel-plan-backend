@@ -6,6 +6,7 @@ use App\Exceptions\RoleInvalidException;
 use App\Exceptions\UnauthorizedException;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\WebUserLoginRequest;
 use App\Repositories\UserRepository;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Hash;
@@ -54,6 +55,17 @@ class UserServiceImpl implements UserService {
         return $token;
     }
 
+    function webLogin(WebUserLoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (auth()->attempt($credentials, $request->has('remember'))) {
+            return true;
+        }
+
+        return false;
+    }
+    
     private function roleValidation($role) {
         $roles = array('admin', 'customer');
         if (!in_array($role, $roles)) {

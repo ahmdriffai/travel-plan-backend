@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::controller(\App\Http\Controllers\LoginController::class)
+    ->prefix('login')
+    ->group(function () {
+        Route::get('/', 'login')->name('form-login');
+        Route::post('/', 'postLogin')->name('post-login');
+        Route::get('/logout', 'logout')->name('logout');
+    });
+
+Route::controller(\App\Http\Controllers\LoginController::class)
+    ->prefix('register')
+    ->group(function () {
+        Route::get('/', 'register')->name('form-register');
+        Route::post('/', 'postRegister')->name('post-register');
+    });
