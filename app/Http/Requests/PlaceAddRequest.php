@@ -31,14 +31,8 @@ class PlaceAddRequest extends FormRequest
             'price' => ['required'],
             'description' => ['required'],
             'categories' => ['required'],
+            'summary' => ['required'],
+            'unit' => ['required'],
         ];
-    }
-
-    function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'success' => false,
-            'errors' => $validator->errors(),
-        ], 422));
     }
 }

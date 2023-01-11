@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    private CategoryRepository $categoryRepository;
+    private $categoryRepository;
 
     public function __construct(CategoryRepository $categoryRepository) {
         $this->categoryRepository = $categoryRepository;
@@ -18,10 +18,12 @@ class CategoryController extends Controller
     public function index()
     {
         try {
+            $title = 'Kategori';
             $categories = $this->categoryRepository->getAll();
-        
-            return view('admin.categories.index', compact('categories'));
+
+            return view('admin.categories.index', compact('categories', 'title'));
         } catch (Exception $e) {
+            dd($e->getMessage());
             abort(500);
         }
     }
@@ -35,7 +37,7 @@ class CategoryController extends Controller
 
             $this->categoryRepository->create($detail);
 
-            return redirect()->back()->with('succes', 'Berhasil menambah data kategori');
+            return redirect()->back()->with('success', 'Berhasil menambah data kategori');
         } catch (Exception $e) {
             return $this->serverError();
         }

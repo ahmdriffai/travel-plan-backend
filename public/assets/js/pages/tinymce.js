@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         content_css: "default",
       };
 
-  tinymce.init({ selector: "#default", ...themeOptions });
+  tinymce.init({ selector: ".default", ...themeOptions });
   tinymce.init({
     selector: "#dark",
     toolbar:

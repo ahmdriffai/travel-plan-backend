@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Place;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,13 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $categoryName = ['penginapan', 'wisata'];
-        for ($i=0; $i < count($categoryName); $i++) { 
-            Category::factory()->create(['name' => $categoryName[$i]]);
-        }
-
-        
-        Place::factory(5)->create();
+         \App\Models\User::factory()->create([
+             'name' => 'admin',
+             'email' => 'admin@gmail.com',
+             'password' => Hash::make('rahasia'),
+             'role' => 'admin',
+         ]);
     }
 }

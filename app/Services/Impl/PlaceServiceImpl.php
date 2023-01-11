@@ -7,7 +7,7 @@ use App\Repositories\PlaceRepository;
 use App\Services\PlaceService;
 
 class PlaceServiceImpl implements PlaceService {
-    private PlaceRepository $placeRepository;
+    private $placeRepository;
 
     public function __construct(PlaceRepository $placeRepository) {
         $this->placeRepository = $placeRepository;
@@ -23,10 +23,12 @@ class PlaceServiceImpl implements PlaceService {
             'location' => $request->input('location'),
             'price' => $request->input('price'),
             'description' => $request->input('description'),
+            'unit' => $request->input('unit'),
+            'summary' => $request->input('summary'),
         ];
 
         $place = $this->placeRepository->create($detailPlace, $categoryId);
-        
+
         return $place;
     }
 }

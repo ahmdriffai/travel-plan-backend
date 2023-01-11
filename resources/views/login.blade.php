@@ -31,4 +31,5 @@
 <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
     type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
 
+    <p class="text-xs">Tidak punya akun ? <a href="{{ route('form-register') }}" class="link-primary">Daftar disini</a></p>
 @endsection

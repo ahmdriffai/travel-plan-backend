@@ -20,7 +20,7 @@ class LoginController extends Controller
     }
 
     public function postRegister() {
-        
+
     }
 
     public function login() {
@@ -31,12 +31,19 @@ class LoginController extends Controller
         try {
             $login = $this->userService->webLogin($request);
             if ($login) {
-                return redirect()->route('dashboard');
+                $user = auth()->user();
+
+                if ($user->role == 'admin') {
+                    return redirect()->route('admin.dashboard');
+                }
+
+                return redirect('/');
             }
 
             return redirect()->back()->with('error', 'Email dan password tidak sesuai')
                 ->withInput($request->only(['email']));
         }catch (\Exception $exception) {
+            dd($exception->getMessage());
             abort(500, 'Server Error');
         }
     }

@@ -3,10 +3,10 @@
 
 @section('content')
 <h3 class="mb-5">Sign in</h3>
-<form class="user" method="post" action="{{ route('post-login') }}">
+<form class="user" method="post" action="{{ route('post-register') }}">
     @csrf
     <div class="form-outline mb-4">
-        <input type="email" name="text" id="typeEmailX-2" class="form-control form-control-lg @error('username') is-invalid @enderror" value="{{ old('email') }}"/>
+        <input type="text" name="text" id="typeEmailX-2" class="form-control form-control-lg @error('username') is-invalid @enderror" value="{{ old('email') }}"/>
         <label class="form-label" for="typeEmailX-2">Nama</label>
     </div>
 

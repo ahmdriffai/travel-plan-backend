@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', function () {
+    $places = \App\Models\Place::all();
+    return view('welcome', compact('places'));
+});
 Route::controller(\App\Http\Controllers\LoginController::class)
     ->prefix('login')
     ->group(function () {
@@ -27,3 +30,29 @@ Route::controller(\App\Http\Controllers\LoginController::class)
         Route::get('/', 'register')->name('form-register');
         Route::post('/', 'postRegister')->name('post-register');
     });
+
+Route::prefix('admin')
+    ->middleware(['auth', 'can:admin'])
+    ->as('admin.')
+    ->group(function() {
+        Route::get('/', [\App\Http\Controllers\DashboardContoroller::class, 'index'])->name('dashboard');
+        Route::controller(\App\Http\Controllers\CategoryController::class)
+            ->prefix('categories')
+            ->as('categories.')
+            ->group(function() {
+                Route::get('/', 'index')->name('index');
+                Route::post('/', 'store')->name('store');
+            });
+        Route::controller(\App\Http\Controllers\PlaceController::class)
+            ->prefix('places')
+            ->as('places.')
+            ->group(function() {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+            });
+    });
+
+//Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
