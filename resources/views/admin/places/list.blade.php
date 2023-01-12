@@ -5,7 +5,7 @@
         </div>
         <div class="card-content">
             <div class="mx-4 d-flex justify-content-between">
-                <a class="btn btn-primary">Add Place</a>
+                <a href="{{ route('admin.places.create') }}" class="btn btn-primary">Add Place</a>
                 {!! Form::open(['method' => 'get']) !!}
                     {!! Form::text('search', $_GET['search'] ?? '', ['class' => 'form-control', 'placeholder' => 'Search ..']) !!}
                 {!! Form::close() !!}
