@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('google_id')->nullable();
             $table->string('password')->nullable();
             $table->string('avatar')->nullable();
-            $table->enum('role', ['admin', 'traveler']);
+            $table->enum('role', ['admin', 'traveler'])->default('traveler');
             $table->rememberToken();
             $table->timestamps();
         });

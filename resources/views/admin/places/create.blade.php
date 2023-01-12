@@ -19,13 +19,13 @@
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('location', 'Location') !!}
-                                    <small class="text-muted"><i>look on <a href="https://maps.google.com" target="_blank" class="link-primary fw-bold">google maps</a> to find location, <span class="text-danger">Hanya link nya saja</span></i></small>
+                                    <small class="text-muted"><i>look on <a href="https://maps.google.com" target="_blank" class="link-primary fw-bold">google maps</a> to find location,</i></small>
                                     {!! Form::text('location', null, ['class' => 'form-control']) !!}
                                 </div>
 
                                 <div class="form-group">
                                     {!! Form::label('link_map', 'Map') !!}
-                                    <small class="text-muted"><i>Lihat panduan <a href="https://www.oketheme.com/cara-mendapatkan-kode-embed-google-maps.html" target="_blank" class="link-primary fw-bold">disini.</a> untuk mengisi link map </i></small>
+                                    <small class="text-muted"><i>Lihat panduan <a href="https://www.oketheme.com/cara-mendapatkan-kode-embed-google-maps.html" target="_blank" class="link-primary fw-bold">disini.</a> untuk mengisi link map  <span class="text-danger">Hanya link nya saja</span></i></small>
                                     {!! Form::text('link_map', null, ['class' => 'form-control', 'placeholder' => 'https://https://www.google.com/maps/embed?pb=xxx']) !!}
                                 </div>
                                 <div class="col-md-6">

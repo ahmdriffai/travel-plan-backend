@@ -34,8 +34,12 @@
                                         <p class="text-sm m-0 p-0 d-flex">Distance : 12 Km</p>
                                     </div>
                                     <div class="d-flex mb-3">
-                                        <a class="btn btn-primary me-2">Tambah Plan</a>
-                                        <a class="btn btn-outline-primary">Petunjuk Arah</a>
+                                        {!! Form::open(['route' => 'list-travel.store', 'method' => 'post' ]) !!}
+                                            {{ Form::hidden('user_id', Auth::user()->id) }}
+                                            {{ Form::hidden('place_id', $place->id) }}
+                                            <button type="submit" class="btn btn-primary me-2">Tambah Plan</button>
+                                        {!! Form::close() !!}
+                                        <a href="https://www.google.com/maps/dir/Kalibeber,+Wonosobo+Regency,+Central+Java/Telaga+Warna,+Dieng,+Wonosobo+Regency,+Central+Java/@-7.2640088,109.8589699,12z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x2e700a81a968392d:0x95518ac088ff6f1b!2m2!1d109.9035395!2d-7.3240392!1m5!1m1!1s0x2e700cefeafe2475:0xec2dd3197faf5f2a!2m2!1d109.9152778!2d-7.2133333" class="btn btn-outline-primary" target="_blank">Petunjuk Arah</a>
                                     </div>
                                 </div>
                             </div>
@@ -68,11 +72,7 @@
                 <div class="card-body">
                     <div class="googlemaps">
                         <iframe
-                            @if($place->link_map == null)
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.218082663188!2d109.89945291420506!3d-7.3293862741165325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7aa080990cd18d%3A0x8953d7b1e26f6ae5!2sUniversitas%20Sains%20Al-Qur&#39;an%20(UNSIQ)!5e0!3m2!1sen!2sid!4v1673479716958!5m2!1sen!2sid"
-                            @else
-                            src="{{ $place->link_map }}"
-                            @endif
                             width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>

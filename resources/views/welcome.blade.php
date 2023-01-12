@@ -24,7 +24,7 @@
     <div class="row">
         @foreach($places as $place)
         <div class="col-sm-12 col-md-6 col-lg-3">
-            <a href="{{ route('place-detail', ['id' => $place->id]) }}">
+            <a href="{{ route('place-detail', ['id' => $place->id]) }}" class="nav-link">
                 <div class="card">
                     <div class="card-content">
                         <div style="width: 100%; height: 150px; overflow: hidden">

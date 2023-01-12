@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\RoleInvalidException;
+use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\WebUserLoginRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -19,8 +22,17 @@ class LoginController extends Controller
         return view('register');
     }
 
-    public function postRegister() {
-
+    public function postRegister(UserRegisterRequest $request) {
+        try {
+            list($user, $token) = $this->userService->register($request);
+            return redirect()->route('form-login')->with('success', 'Berhasil registrasi user');
+        } catch (RoleInvalidException $e) {
+            return back()->with('error', 'input tidak sesuai');
+        } catch(\Exception $e) {
+            dd($e->getMessage());
+            Log::error($e);
+            abort(500);
+        }
     }
 
     public function login() {

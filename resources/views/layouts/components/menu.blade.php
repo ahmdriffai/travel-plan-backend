@@ -4,7 +4,7 @@
 
     <li
         class="menu-item  ">
-        <a href="index.html" class='menu-link'>
+        <a href="{{ route('admin.dashboard') }}" class='menu-link'>
             <i class="bi bi-grid-fill"></i>
             <span>Dashboard</span>
         </a>
@@ -28,7 +28,7 @@
 
                     <li
                         class="submenu-item  ">
-                        <a href="component-alert.html"
+                        <a href="{{ route('admin.places.index') }}"
                            class='submenu-link'>Places</a>
 
 
@@ -38,7 +38,7 @@
 
                     <li
                         class="submenu-item  ">
-                        <a href="component-badge.html"
+                        <a href="{{ route('admin.categories.index') }}"
                            class='submenu-link'>Categories</a>
 
 

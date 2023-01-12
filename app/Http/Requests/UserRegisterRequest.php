@@ -32,12 +32,4 @@ class UserRegisterRequest extends FormRequest
             'role' => ['required'],
         ];
     }
-
-    function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'success' => false,
-            'errors' => $validator->errors(),
-        ], 422));
-    }
 }

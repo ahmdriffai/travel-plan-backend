@@ -22,6 +22,15 @@ Route::controller(\App\Http\Controllers\HomeController::class)
         Route::get('/place/{id}', 'placeDetail')->name('place-detail');
     });
 
+Route::controller(\App\Http\Controllers\ListTravelController::class)
+    ->middleware('auth')
+    ->prefix('list-travel')
+    ->as('list-travel.')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+    });
+
 
 Route::controller(\App\Http\Controllers\LoginController::class)
     ->prefix('login')
@@ -37,6 +46,7 @@ Route::controller(\App\Http\Controllers\LoginController::class)
         Route::get('/', 'register')->name('form-register');
         Route::post('/', 'postRegister')->name('post-register');
     });
+
 
 Route::prefix('admin')
     ->middleware(['auth', 'can:admin'])

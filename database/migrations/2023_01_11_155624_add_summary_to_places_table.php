@@ -14,7 +14,7 @@ class AddSummaryToPlacesTable extends Migration
     public function up()
     {
         Schema::table('places', function (Blueprint $table) {
-            $table->string('summary')->nullable();
+            $table->text('summary')->nullable();
         });
     }
 

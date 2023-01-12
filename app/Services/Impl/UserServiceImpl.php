@@ -28,7 +28,7 @@ class UserServiceImpl implements UserService {
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'role' => $role,
+            'role' => 'traveler',
         ];
 
         $user = $this->userRepository->create($userDetail);
@@ -65,9 +65,9 @@ class UserServiceImpl implements UserService {
 
         return false;
     }
-    
+
     private function roleValidation($role) {
-        $roles = array('admin', 'customer');
+        $roles = array('admin', 'traveler');
         if (!in_array($role, $roles)) {
             throw new RoleInvalidException('role tida valid');
         }
